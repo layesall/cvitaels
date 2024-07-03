@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ch*h#l+*lf0)dd1wffp=$i9440%e2s8o(@5)z_&b=qr9sp%9(p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'layesall.pythonanywhere.com/']
+ALLOWED_HOSTS = ['127.0.0.1' if DEBUG else 'layesall.pythonanywhere.com']
 
 
 # Application definition
@@ -74,13 +74,23 @@ WSGI_APPLICATION = 'cvitae.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'layesall$default',
+            'USER': 'layesall',
+            'PASSWORD': 'cvitaelsdb',
+            'HOST': 'layesall.mysql.pythonanywhere-services.com',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
