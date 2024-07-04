@@ -1,6 +1,8 @@
 from django.urls import path
-from base.views import BaseView
+from base.views import IndexView, WorksView, NewsView
 
 urlpatterns = [
-    path('', BaseView.as_view(), name='base'),
+    path('', IndexView.as_view(), name='index'),
+    path('works/', WorksView.as_view(), name='works'),
+    path('news/', NewsView.as_view(), name='news'),
 ]

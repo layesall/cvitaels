@@ -4,12 +4,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome | Layesall</title>
+    <title> {% block title %}{% endblock title %} | by Layesall</title>
     <link rel="stylesheet" href="{% static 'base/base.css' %}" />
   </head>
   <body>
-    <h1>CVitae</h1>
-    <p>django project deploy in <strong>pythonanywhere</strong></p>
-    <p>using git and github</p>
+    <header class="base-header">
+      <div class="base-logo">
+        <a href="{% url "index" %}">CVitae</a>
+        <small>by Layesall</small>
+      </div>
+      <nav class="base-nav">
+        <a href="{% url "works" %}">Works</a>
+        <a href="{% url "news" %}">News</a>
+      </nav>
+    </header>
+      {% block banner %}{% endblock banner %}
   </body>
 </html>
